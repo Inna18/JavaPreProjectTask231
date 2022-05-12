@@ -13,4 +13,7 @@ public interface UserDao {
     public User getUserById(int id);
 
     public void deleteUserById(int id);
+
+    public User getActiveUserByEmail(String email);
+
 }

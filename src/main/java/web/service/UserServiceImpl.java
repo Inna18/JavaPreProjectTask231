@@ -38,5 +38,23 @@ public class UserServiceImpl implements UserService {
         userDao.deleteUserById(id);
     }
 
+    @Override
+    @Transactional
+    public User getActiveUserByEmail(String email) {
+        return userDao.getActiveUserByEmail(email);
+    }
+
+
+    @Override
+    @Transactional
+    public boolean isEmailAlreadyInUse(String email) {
+        boolean emailInDB = true;
+
+        if (userDao.getActiveUserByEmail(email) == null) {
+            emailInDB = false;
+        }
+        return emailInDB;
+    }
+
 
 }

@@ -14,4 +14,7 @@ public interface UserService {
 
     public void deleteUserById(int id);
 
+    public User getActiveUserByEmail(String email);
+
+    public boolean isEmailAlreadyInUse(String email);
 }

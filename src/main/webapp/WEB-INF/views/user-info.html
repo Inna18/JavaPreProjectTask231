@@ -12,10 +12,10 @@
 
         <input type="hidden" th:field="*{id}">
 
-        <p>Name: <input type="text" th:field="*{name}" /></p>
-        <p>Surname: <input type="text" th:field="*{surname}" /></p>
-        <p>Age: <input type="text" th:field="*{age}" /></p>
-        <p>Email: <input type="text" th:field="*{email}" /></p>
+        <p>Name: <input type="text" th:field="*{name}" /></p> <p style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</p>
+        <p>Surname: <input type="text" th:field="*{surname}" /> </p> <p style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</p>
+        <p>Age: <input type="text" th:field="*{age}" /></p> <p style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</p>
+        <p>Email: <input type="text" th:field="*{email}" /></p> <p style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</p>
         <input type="submit" value="OK"/>
 
     </form>

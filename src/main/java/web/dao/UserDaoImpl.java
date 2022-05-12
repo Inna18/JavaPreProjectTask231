@@ -4,6 +4,7 @@ import org.springframework.stereotype.Repository;
 import web.model.User;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
+
         entityManager.merge(user);
     }
 
@@ -34,4 +36,21 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("userId", id)
                 .executeUpdate();
     }
+
+    @Override
+    public User getActiveUserByEmail(String email) {
+
+        User user;
+
+        try {
+            user = (User) entityManager.createQuery("from User u where u.email = :email")
+                    .setParameter("email", email)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            user = null;
+        }
+
+        return user;
+    }
+
 }
